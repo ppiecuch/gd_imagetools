@@ -23,6 +23,8 @@ public:
 
 public:
 	// Image methods
+	Ref<Image> rotate_90_cw(Ref<Image> p_image);
+	Ref<Image> rotate_90_ccw(Ref<Image> p_image);
 	void replace_color(Ref<Image> p_image, const Color &p_color, const Color &p_with_color);
 	Ref<Image> bucket_fill(Ref<Image> p_image, const Point2 &p_at, const Color &p_fill_color, bool p_fill_image = true, KernelConnectivity p_kc = KERNEL_FOUR_WAY);
 	void resize_hqx(Ref<Image> p_image, int p_scale);

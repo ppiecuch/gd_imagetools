@@ -3,6 +3,16 @@
 
 _ImageTools *_ImageTools::singleton = NULL;
 
+Ref<Image> _ImageTools::rotate_90_cw(Ref<Image> p_image) {
+
+	return ImageTools::rotate_90_cw(p_image);
+}
+
+Ref<Image> _ImageTools::rotate_90_ccw(Ref<Image> p_image) {
+
+	return ImageTools::rotate_90_ccw(p_image);
+}
+
 void _ImageTools::replace_color(Ref<Image> p_image, const Color &p_color, const Color &p_with_color) {
 
 	ImageTools::replace_color(p_image, p_color, p_with_color);
@@ -44,6 +54,8 @@ Variant _ImageTools::get_pixelv_or_null(Ref<Image> p_image, const Vector2 &p_pos
 void _ImageTools::_bind_methods() {
 
 	// Image methods
+	ClassDB::bind_method(D_METHOD("rotate_90_cw", "image"), &_ImageTools::rotate_90_cw);
+	ClassDB::bind_method(D_METHOD("rotate_90_ccw", "image"), &_ImageTools::rotate_90_ccw);
 	ClassDB::bind_method(D_METHOD("replace_color", "image", "color", "with_color"), &_ImageTools::replace_color);
 	ClassDB::bind_method(D_METHOD("bucket_fill", "image", "at", "fill_color", "fill_image", "connectivity"), &_ImageTools::bucket_fill, DEFVAL(true), DEFVAL(KERNEL_FOUR_WAY));
 	ClassDB::bind_method(D_METHOD("resize_hqx", "image", "scale"), &_ImageTools::resize_hqx, DEFVAL(2));

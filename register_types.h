@@ -1,2 +1,2 @@
-void register_imagetools_types();
-void unregister_imagetools_types();
+void register_gd_imagetools_types();
+void unregister_gd_imagetools_types();

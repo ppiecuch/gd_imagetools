@@ -1,6 +1,50 @@
 #include "image_tools.h"
-#include "modules/imagetools/thirdparty/hqx/HQ2x.hh"
-#include "modules/imagetools/thirdparty/hqx/HQ3x.hh"
+#include "thirdparty/hqx/HQ2x.hh"
+#include "thirdparty/hqx/HQ3x.hh"
+
+Ref<Image> ImageTools::rotate_90_cw(Ref<Image> p_image) {
+    const int iw = p_image->get_width();
+    const int ih = p_image->get_height();
+
+	Ref<Image> r_image = memnew(Image);
+	r_image->create(ih, iw, p_image->has_mipmaps(), p_image->get_format());
+
+	p_image->lock();
+	r_image->lock();
+
+	for (int y = 0; y < ih; ++y) {
+		for (int x = 0; x < iw; ++x) {
+            r_image->set_pixel(y, iw-x-1, p_image->get_pixel(x, y));
+		}
+	}
+
+	r_image->unlock();
+	p_image->unlock();
+
+    return r_image;
+}
+
+Ref<Image> ImageTools::rotate_90_ccw(Ref<Image> p_image) {
+    const int iw = p_image->get_width();
+    const int ih = p_image->get_height();
+
+	Ref<Image> r_image = memnew(Image);
+	r_image->create(ih, iw, p_image->has_mipmaps(), p_image->get_format());
+
+	p_image->unlock();
+	r_image->lock();
+
+	for (int y = 0; y < ih; ++y) {
+		for (int x = 0; x < iw; ++x) {
+            r_image->set_pixel(y, x, p_image->get_pixel(x, y));
+		}
+	}
+
+	r_image->unlock();
+	p_image->unlock();
+
+    return r_image;
+}
 
 void ImageTools::replace_color(Ref<Image> p_image, const Color &p_color, const Color &p_with_color) {
 

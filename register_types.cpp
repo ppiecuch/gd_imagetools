@@ -14,7 +14,7 @@ static _ImageTools *_image_tools = NULL;
 static ImageLoaderIndexedPNG *image_loader_indexed_png;
 static Ref<ResourceSaverIndexedPNG> resource_saver_indexed_png;
 
-void register_imagetools_types() {
+void register_gd_imagetools_types() {
 
 	// Singleton
 	_image_tools = memnew(_ImageTools);
@@ -32,7 +32,7 @@ void register_imagetools_types() {
 	ResourceSaver::add_resource_format_saver(resource_saver_indexed_png);
 }
 
-void unregister_imagetools_types() {
+void unregister_gd_imagetools_types() {
 
 	memdelete(_image_tools);
 
